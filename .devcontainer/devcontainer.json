@@ -1,0 +1,46 @@
+{
+  "name": "Windows with Roblox Studio",
+  "image": "dockur/windows:latest",
+  "hostRequirements": {
+    "cpus": 4,
+    "memory": "8gb"
+  },
+  "machineType": "standardLinux4Core",
+  "features": {
+    "ghcr.io/devcontainers/features/desktop-lite:1": {}
+  },
+  "forwardPorts": [
+    5900,
+    6080,
+    8006
+  ],
+  "portsAttributes": {
+    "5900": {
+      "label": "VNC",
+      "onAutoForward": "silent"
+    },
+    "6080": {
+      "label": "noVNC Web",
+      "onAutoForward": "notify"
+    },
+    "8006": {
+      "label": "Roblox Studio Web",
+      "onAutoForward": "silent"
+    }
+  },
+  "postCreateCommand": "echo 'Windows container initialized. Access via noVNC on port 6080 or VNC on port 5900'",
+  "customizations": {
+    "codespaces": {
+      "openInBrowser": true,
+      "repositories": {
+        "josiah201105-ctrl/test": {
+          "permissions": "read"
+        }
+      }
+    }
+  },
+  "remoteEnv": {
+    "DISPLAY": ":1"
+  },
+  "remoteUser": "root"
+}
